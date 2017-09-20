@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var pokerArr = [12,12,12,11,11,11,3,3]
+		var arr = [];//
+		var poker_count = [];//每张牌出现次数
+		var three_count = 0;//里面有多少3张
+		var one_count = 0;//有多少张单张
+		var max_location = 0;//初始化最大值得位置
+		var three = [];
+		var num = 2;
+		var n=1;
+		for(var i=0;i<pokerArr.length;i++){
+			if(arr.indexOf(pokerArr[i]) == -1){
+				arr.push(pokerArr[i]);
+				poker_count.push(1);
+			}else{
+				var x = arr.indexOf(pokerArr[i]);
+				poker_count[x] += 1;
+			}
+		}
+		//记录单张和3张有多少张
+		for(var i=0; i<arr.length; i++){
+			if(poker_count[i]==3&&arr[i]-1==arr[i+1]&&poker_count[i+1]==3){//当前为3张且下一个数为本身-1，出现的牌数也是3
+				if(arr[i]>12&&num>1){
+					alert(2);
+				}else{
+					three.push(arr[i]);
+				}
+				
+			}
+			if(poker_count[i]==n){
+				one_count++;
+			}else if(poker_count[i]>n){
+				for(var j=0;j<three.length;j++){
+					if(arr[i]==three[j]){
+						one_count = one_count+2;
+					}
+				}
+			}
+		}
+
+		//找最大值得位置
+		for(var i=0; i<arr.length; i++){
+			if(poker_count[i]==3){
+				break;
+			}else{
+				max_location++;
+			}
+		}
+
+
+		if(three.length==num-1&&one_count==num){
+			alert(1);
+		}else{
+			alert(2);
+		}
+
+	
+
+	</script>
+</body>
+</html>
